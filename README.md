@@ -68,3 +68,38 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# City-Explorer
+
+**Author**: Matthew Gebhart
+**Version**: 1.0.1
+
+## Overview
+provide easy searching of a USA city to give geographical information. 
+
+## Getting Started
+using the Location IQ Geocoding API and Axios to perform search queries. 
+
+## Architecture
+<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+
+## Change Log
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+
+01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+
+## Credit and Collaborations
+credit to Sage Jankowski for some ideation and paired programming on Lab 6
+
+## Time Estimates
+
+Name of feature: implement API and form
+
+Estimate of time needed to complete: 3
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: ___6__
