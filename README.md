@@ -92,9 +92,18 @@ using the Location IQ Geocoding API and Axios to perform search queries.
 ## Credit and Collaborations
 credit to Sage Jankowski for some ideation and paired programming on Lab 6
 
+Lab 6 web request response cycle drawing with Sage Jankowski
+./src/assets/lab06.png
+
+### Project tracking Trello: 
+https://trello.com/b/aTSeqvNr/city-explorer
+
+### Netlify Deploy:
+https://city-explorer-318.netlify.app/
+
 ## Time Estimates
 
-Name of feature: implement API and form
+Name of feature: Lab 6 implement API and form
 
 Estimate of time needed to complete: 3
 
