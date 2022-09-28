@@ -85,15 +85,18 @@ using the Location IQ Geocoding API and Axios to perform search queries.
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+9-26-2022 implementation and proof of life. Got all data reading from API and rendering to page. No styling done yet
 
 ## Credit and Collaborations
 credit to Sage Jankowski for some ideation and paired programming on Lab 6
+credit to Julian GAllegos for image mapping and collaboration on Lab 7
 
 Lab 6 web request response cycle drawing with Sage Jankowski
-./src/assets/lab06.png
+<img src="./src/assets/lab06.png" width=300>
+
+Lab 7 web response cycle for lab 7 tasks (collaboration with Julian)
+<img src="./src/assets/lab07.png" width=300>
+
 
 ### Project tracking Trello: 
 https://trello.com/b/aTSeqvNr/city-explorer
@@ -112,3 +115,14 @@ Start time: _____
 Finish time: _____
 
 Actual time needed to complete: ___6__
+
+
+Name of feature: Lab 7 - implement express server for weather data
+
+Estimate of time needed to complete: __3___
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
