@@ -3,7 +3,7 @@ import { Container, Form, Button} from 'react-bootstrap';
 import './App.css';
 import axios from 'axios';
 // import MapCard from './MapCard';
-// import Weather from './Weather';
+import Weather from './Weather.js';
 
 class App extends React.Component {
   constructor(props){
@@ -48,6 +48,7 @@ weatherGetter = async (lat, lon) => {
   try {
     let weatherGet = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lat=${lat}}&lon=${lon}`);
     this.setState({ weather: weatherGet.data});
+    console.log(this.state.weather);
   } catch (error) {
     console.log(error);
     this.setState({ error:true, errorMessage: error.message })
@@ -75,6 +76,7 @@ weatherGetter = async (lat, lon) => {
         <h2>The Longitude is: {this.state.location.lon}</h2>
         {/* <MapCard></MapCard> */}
         <img src={this.state.mapDisplay} alt={this.state.location.display_name} ></img>
+        <Weather></Weather>
         </>
       } 
       {this.state.error &&
