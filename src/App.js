@@ -47,7 +47,7 @@ class App extends React.Component {
 weatherGetter = async (lat, lon) => {
   
   try {
-    let weatherGet = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lat=${lat}}&lon=${lon}`);
+    let weatherGet = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lat=${lat}&lon=${lon}`);
     this.setState({ weather: weatherGet.data});
     console.log(weatherGet.data);
     
@@ -59,7 +59,6 @@ weatherGetter = async (lat, lon) => {
 
 
   render() {
-    console.log(this.state.weather);
     return (
     <Container>
       <Form id="explore-form" className="my-4" onSubmit={this.getLocation} >
