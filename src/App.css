@@ -1,0 +1,23 @@
+img {
+display: flex;
+justify-content: center;
+align-content: center;
+border-radius: 20%;
+padding: 20px;
+}
+
+.Container {
+    background-color: aquamarine;
+}
+
+#weather-forecast {
+    align-items: center;
+}
+
+#explore-form {
+    background-color: aquamarine;
+    border-radius: 10px;
+    text-align: center;
+    font-size:larger;
+    padding: 20px;
+}

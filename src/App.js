@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Form, Button} from 'react-bootstrap';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 // import MapCard from './MapCard';
 import Weather from './Weather.js';
@@ -23,7 +24,6 @@ class App extends React.Component {
   handleInput = (e) => {
       e.preventDefault();
       this.setState({searchQuery: e.target.value });
-      console.log(this.state.searchQuery);
     };
 
   getLocation = async (e) => {
@@ -32,10 +32,10 @@ class App extends React.Component {
       const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ}&q=${this.state.searchQuery}&format=json`;
       const res = await axios.get(API);
       console.log(res.data[0].lat , res.data[0].lon);
-      this.setState({location: res.data[0]});
-      this.weatherGetter(res.data[0].lat, res.data[0].lon)
+      this.setState({location: res.data[0]}); 
+      this.weatherGetter(res.data[0].lat, res.data[0].lon);
 
-      const mapImg = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ}&center=${res.data[0].lat},${res.data[0].lon}&zoom=13&size=500x400`;
+      const mapImg = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ}&center=${res.data[0].lat},${res.data[0].lon}&zoom=11&size=300x300`;
       this.setState({mapDisplay: mapImg});
     } catch (error) {
       console.log(error);
@@ -45,10 +45,12 @@ class App extends React.Component {
     };
 
 weatherGetter = async (lat, lon) => {
+  
   try {
     let weatherGet = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lat=${lat}}&lon=${lon}`);
     this.setState({ weather: weatherGet.data});
-    console.log(this.state.weather);
+    console.log(weatherGet.data);
+    
   } catch (error) {
     console.log(error);
     this.setState({ error:true, errorMessage: error.message })
@@ -57,11 +59,12 @@ weatherGetter = async (lat, lon) => {
 
 
   render() {
+    console.log(this.state.weather);
     return (
     <Container>
-      <Form className="my-4" onSubmit={this.getLocation} >
+      <Form id="explore-form" className="my-4" onSubmit={this.getLocation} >
         <Form.Group className="mb-3" controlId="formGroupInput">
-          <Form.Label >Select A City to Explore</Form.Label>
+          <Form.Label>Select A City to Explore</Form.Label>
         </Form.Group>
         <Form.Group>
           <Form.Control type="Input" onChange={this.handleInput} placeholder="search for a city">
@@ -69,14 +72,16 @@ weatherGetter = async (lat, lon) => {
         </Form.Group>
         <Button variant="primary" type="submit">Explore!</Button>
       </Form>
-      {this.state.location.place_id  &&
+      {this.state.weather.length > 0  &&
         <>
-        <h2>The city is: {this.state.location.display_name}</h2>
-        <h2>The Latitude is: {this.state.location.lat}</h2>
-        <h2>The Longitude is: {this.state.location.lon}</h2>
+        <h4>The city is: {this.state.location.display_name}</h4>
+        <h6>The Latitude is: {this.state.location.lat}</h6>
+        <h6>The Longitude is: {this.state.location.lon}</h6>
         {/* <MapCard></MapCard> */}
         <img src={this.state.mapDisplay} alt={this.state.location.display_name} ></img>
-        <Weather></Weather>
+        <div>
+        <Weather id="weather-forecast" weather={this.state.weather}/>
+        </div>
         </>
       } 
       {this.state.error &&
