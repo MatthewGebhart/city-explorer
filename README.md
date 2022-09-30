@@ -89,7 +89,9 @@ using the Location IQ Geocoding API and Axios to perform search queries.
 
 ## Credit and Collaborations
 credit to Sage Jankowski for some ideation and paired programming on Lab 6
-credit to Julian GAllegos for image mapping and collaboration on Lab 7
+credit to Julian GAllegos for image mapping and collaboration on Lab 7 and also for lots of help with the server functions. 
+credit to Maximo VincenteMeija for WRRC mapping for lab 8
+
 
 Lab 6 web request response cycle drawing with Sage Jankowski
 <img src="./src/assets/lab06.png" width=300>
@@ -97,6 +99,8 @@ Lab 6 web request response cycle drawing with Sage Jankowski
 Lab 7 web response cycle for lab 7 tasks (collaboration with Julian)
 <img src="./src/assets/lab07.png" width=300>
 
+Lab 8 web response cycle with Maximo Vincente
+<img src="src/assets/lab08.jpg" width=300>
 
 ### Project tracking Trello: 
 https://trello.com/b/aTSeqvNr/city-explorer
@@ -118,6 +122,17 @@ Actual time needed to complete: ___6__
 
 
 Name of feature: Lab 7 - implement express server for weather data
+
+Estimate of time needed to complete: __3___
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+
+Name of feature: Lab 8 - implement express server for weather data
 
 Estimate of time needed to complete: __3___
 

@@ -20,7 +20,7 @@ class Weather extends React.Component {
                 </Card.Text>
                 <Card.Text>Date: {this.props.weather[2].date}</Card.Text>
                 <Card.Text className="mb-2">
-                     Weather Description: {this.props.weather[2].description}
+                     Forecast: {this.props.weather[2].description}
                 </Card.Text>
           </Container>
 
