@@ -1,10 +1,12 @@
 import React from 'react';
-import { Container, Form, Button} from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-// import MapCard from './MapCard';
-import Weather from './Weather.js';
+// import MapCard from './components/MapCard.js';
+import Weather from './components/Weather.js';
+import Movies from './components/Movies.js';
+import SearchForm from './components/SearchForm.js';
 
 class App extends React.Component {
   constructor(props){
@@ -16,6 +18,7 @@ class App extends React.Component {
       weather: [],
       location:{},
       mapDisplay: '',
+      moviesArray: [],
       error: false,
       errorMessage: 'Ya Done Errored',
     }
@@ -31,12 +34,15 @@ class App extends React.Component {
       e.preventDefault();
       const API = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ}&q=${this.state.searchQuery}&format=json`;
       const res = await axios.get(API);
-      console.log(res.data[0].lat , res.data[0].lon);
-      this.setState({location: res.data[0]}); 
-      this.weatherGetter(res.data[0].lat, res.data[0].lon);
-
-      const mapImg = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ}&center=${res.data[0].lat},${res.data[0].lon}&zoom=11&size=300x300`;
-      this.setState({mapDisplay: mapImg});
+      console.log(`returned from server ${res.data[0].display_name}, ${res.data[0].lat}, ${res.data[0].lon}`);
+      this.setState({location: res.data[0]}, async () => {
+        let mapURL = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ}&center=${res.data[0].lat},${res.data[0].lon}&zoom=11&size=300x300`;
+        this.setState({mapDisplay: mapURL});
+        this.weatherGetter();
+        this.movieGetter();
+      }); 
+      this.setState({ error: false });
+    
     } catch (error) {
       console.log(error);
       this.setState({ error: true });
@@ -47,30 +53,45 @@ class App extends React.Component {
 weatherGetter = async (lat, lon) => {
   
   try {
-    let weatherGet = await axios.get(`http://localhost:3001/weather?searchQuery=${this.state.searchQuery}&lat=${lat}&lon=${lon}`);
-    this.setState({ weather: weatherGet.data});
+    let weatherGet = await axios.get(`http://localhost:3001/weather?query=${this.state.searchQuery}&lat=${this.state.location.lat}&lon=${this.state.location.lon}`);
     console.log(weatherGet.data);
+    this.setState({ weather: weatherGet.data});
     
   } catch (error) {
     console.log(error);
-    this.setState({ error:true, errorMessage: error.message })
+    this.setState({ error: true });
+    this.setState({ errorMessage: error.message });
   }
 };
 
+movieGetter = async () => {
+  try {
+    console.log(this.state.searchQuery);
+    let movieURL = `http://localhost:3001/movies?query=${this.state.searchQuery}`; 
+    console.log(movieURL);
+    let movieGet = await axios.get(movieURL);
+    console.log(this.state.searchQuery);
+    console.log(movieGet); 
+  //     {
+  //     params: { query: this.state.searchQuery}
+  // });
+    this.setState({moviesArray: movieGet.data});
+  } catch (error) {
+    this.setState({ error: true });
+    this.setState({ errorMessage: error.message })
+  }
+}
 
   render() {
+    console.log(`the moviesArray is ${this.state.moviesArray}`);
     return (
     <Container>
-      <Form id="explore-form" className="my-4" onSubmit={this.getLocation} >
-        <Form.Group className="mb-3" controlId="formGroupInput">
-          <Form.Label>Select A City to Explore</Form.Label>
-        </Form.Group>
-        <Form.Group>
-          <Form.Control type="Input" onChange={this.handleInput} placeholder="search for a city">
-          </Form.Control>
-        </Form.Group>
-        <Button variant="primary" type="submit">Explore!</Button>
-      </Form>
+      <SearchForm 
+      handleInput={this.handleInput}
+      getLocation={this.getLocation}
+      ></SearchForm>
+
+      {/* render Weather forecast */}
       {this.state.weather.length > 0  &&
         <>
         <h4>The city is: {this.state.location.display_name}</h4>
@@ -87,6 +108,13 @@ weatherGetter = async (lat, lon) => {
         <h2> Whoopsie! something went wrong - {this.state.errorMessage}</h2>
         }
 
+      {/* render Movie data */}
+      {this.state.moviesArray.length > 0 &&
+      <>
+      <Movies></Movies>
+      </>
+      }
+      <Movies></Movies>
     </Container>
   )
 }
