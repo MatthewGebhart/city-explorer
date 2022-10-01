@@ -7,20 +7,23 @@ class MapCard extends React.Component {
 
     render() {
         return (
-        //     <Card>
-        //   <Card.Body>
-        //     <Card.Img src={this.state.mapDisplay} alt={this.state.location.display_name} className="map"></Card.Img>
-        //   </Card.Body>
-        // </Card>
           <Figure>
           <Figure.Image
-            width={171}
-            height={180}
-            alt="171x180"
-            src={this.state.mapDisplay}
+            width={400}
+            height={400}
+            src={this.props.mapDisplay} 
+            alt={this.props.location.display_name}
           />
           <Figure.Caption>
-            Nulla vitae elit libero, a pharetra augue mollis interdum.
+            <h3 className='text-center'>WeatherForecast</h3>
+            <h6 className='text-center'>Date: {this.props.weather[0].date}</h6>
+            <p className='text-center'>{this.props.weather[0].description}</p>
+            <br></br>
+            <h6 className='text-center'>Date: {this.props.weather[1].date}</h6>
+            <p className='text-center'>{this.props.weather[1].description}</p>
+            <br></br>
+            <h6 className='text-center'>Date: {this.props.weather[2].date}</h6>
+            <p className='text-center'>{this.props.weather[2].description}</p>
           </Figure.Caption>
         </Figure>
         )

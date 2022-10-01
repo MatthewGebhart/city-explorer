@@ -3,8 +3,8 @@ import Container from 'react-bootstrap/Container';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-// import MapCard from './components/MapCard.js';
-import Weather from './components/Weather.js';
+import MapCard from './components/MapCard.js';
+// import Weather from './components/Weather.js';
 import Movies from './components/Movies.js';
 import SearchForm from './components/SearchForm.js';
 
@@ -88,18 +88,24 @@ movieGetter = async () => {
       ></SearchForm>
 
       {/* render Weather forecast */}
+
+      <div id='weather-display-column'>
       {this.state.weather.length > 0  &&
         <>
-        <h4>The city is: {this.state.location.display_name}</h4>
+        <h4 className='text-center'>The city is: {this.state.location.display_name}</h4>
         <h6>The Latitude is: {this.state.location.lat}</h6>
         <h6>The Longitude is: {this.state.location.lon}</h6>
-        {/* <MapCard></MapCard> */}
-        <img src={this.state.mapDisplay} alt={this.state.location.display_name} ></img>
         <div>
-        <Weather id="weather-forecast" weather={this.state.weather}/>
+        <MapCard
+          searchQuery={this.state.searchQuery}
+          weather={this.state.weather}
+          mapDisplay={this.state.mapDisplay}
+          location={this.state.location}
+        />
         </div>
         </>
-      } 
+      }
+      </div> 
       {this.state.error &&
         <h2> Whoopsie! something went wrong - {this.state.errorMessage}</h2>
         }
