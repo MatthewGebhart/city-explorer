@@ -127,4 +127,5 @@ movieGetter = async () => {
 }
 };
 
+
 export default App;
