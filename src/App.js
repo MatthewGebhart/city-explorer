@@ -67,7 +67,7 @@ weatherGetter = async (lat, lon) => {
 
 movieGetter = async () => {
   try {
-    console.log(this.state.searchQuery);
+    // console.log(this.state.searchQuery);
     let movieURL = `${process.env.REACT_APP_SERVER_REMOTE}/movies?query=${this.state.searchQuery}`;
     // let movieURL = `http://localhost:3001/movies?query=${this.state.searchQuery}`; 
     console.log(movieURL);
