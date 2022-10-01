@@ -53,7 +53,8 @@ class App extends React.Component {
 weatherGetter = async (lat, lon) => {
   
   try {
-    let weatherGet = await axios.get(`http://localhost:3001/weather?query=${this.state.searchQuery}&lat=${this.state.location.lat}&lon=${this.state.location.lon}`);
+    let weatherGet = await axios.get(`${process.env.REACT_APP_SERVER_REMOTE}/weather?query=${this.state.searchQuery}&lat=${this.state.location.lat}&lon=${this.state.location.lon}`);
+    // let weatherGet = await axios.get(`http://localhost:3001/weather?query=${this.state.searchQuery}&lat=${this.state.location.lat}&lon=${this.state.location.lon}`);
     console.log(weatherGet.data);
     this.setState({ weather: weatherGet.data});
     
@@ -67,7 +68,8 @@ weatherGetter = async (lat, lon) => {
 movieGetter = async () => {
   try {
     console.log(this.state.searchQuery);
-    let movieURL = `http://localhost:3001/movies?query=${this.state.searchQuery}`; 
+    let movieURL = `${process.env.REACT_APP_SERVER_REMOTE}/movies?query=${this.state.searchQuery}`;
+    // let movieURL = `http://localhost:3001/movies?query=${this.state.searchQuery}`; 
     console.log(movieURL);
     let movieGet = await axios.get(movieURL);
     console.log(this.state.searchQuery);
@@ -124,5 +126,6 @@ movieGetter = async () => {
   )
 }
 };
+
 
 export default App;
