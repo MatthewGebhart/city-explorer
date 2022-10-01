@@ -21,3 +21,8 @@ padding: 20px;
     font-size:larger;
     padding: 20px;
 }
+
+h4 {
+    text-justify: auto;
+}
+

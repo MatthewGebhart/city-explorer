@@ -72,9 +72,6 @@ movieGetter = async () => {
     let movieGet = await axios.get(movieURL);
     console.log(this.state.searchQuery);
     console.log(movieGet); 
-  //     {
-  //     params: { query: this.state.searchQuery}
-  // });
     this.setState({moviesArray: movieGet.data});
   } catch (error) {
     this.setState({ error: true });
@@ -83,7 +80,6 @@ movieGetter = async () => {
 }
 
   render() {
-    console.log(`the moviesArray is ${this.state.moviesArray}`);
     return (
     <Container>
       <SearchForm 
@@ -111,10 +107,13 @@ movieGetter = async () => {
       {/* render Movie data */}
       {this.state.moviesArray.length > 0 &&
       <>
-      <Movies></Movies>
+      <Movies
+      searchQuery={this.state.searchQuery}
+      data={this.state.moviesArray}
+      moviesArray={this.state.moviesArray} 
+      />
       </>
       }
-      <Movies></Movies>
     </Container>
   )
 }
