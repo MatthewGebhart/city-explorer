@@ -18,11 +18,20 @@ padding: 20px;
     background-color: aquamarine;
     border-radius: 10px;
     text-align: center;
-    font-size:larger;
+    font-size: 30px;
+    font-weight: 600;
     padding: 20px;
 }
 
 h4 {
     text-justify: auto;
+}
+
+#weather-display-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+
 }
 
